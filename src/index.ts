@@ -306,6 +306,7 @@ export class DIDComm {
             let recipVk = Base58.decode(recip.header.kid)
             if (!this.sodium.memcmp(recipVk, keys.publicKey)) {
                 notFound.push(recip.header.kid)
+                continue
             }
             let pk = this.sodium.crypto_sign_ed25519_pk_to_curve25519(keys.publicKey)
             let sk = this.sodium.crypto_sign_ed25519_sk_to_curve25519(keys.privateKey)
